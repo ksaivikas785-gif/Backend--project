@@ -1,0 +1,24 @@
+# @name login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "vikas@test.com",
+  "password": "123456"
+}
+
+###
+
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+  "title": "Learn backend",
+  "description": "My first task"
+}
+
+###
+
+GET http://localhost:5000/api/tasks
+Authorization: Bearer {{login.response.body.token}}
